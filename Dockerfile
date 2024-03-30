@@ -7,6 +7,8 @@ WORKDIR /app
 COPY gradlew build.gradle settings.gradle  ./
 COPY gradle ./gradle
 COPY src/main ./src/main
+# Gradle Wrapper 실행 권한 부여
+RUN chmod +x ./gradlew
 RUN ./gradlew bootJar
 
 
