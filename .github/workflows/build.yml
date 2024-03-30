@@ -1,0 +1,39 @@
+name: Build Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  AWS_REGION: ap-northeast-2
+  ECR_REGISTRY: 767397738765.dkr.ecr.ap-northeast-2.amazonaws.com # 레포 url
+  ECR_REPOSITORY: test # 레포 이름
+  IMAGE_TAG: latest
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY }}
+          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_KEY }}
+          aws configure set region ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build docker image
+        run: |
+          docker build -t test .
+
+      - name: push ECR
+        run: |
+          docker tag test:latest 767397738765.dkr.ecr.ap-northeast-2.amazonaws.com/test:latest
+          docker push 767397738765.dkr.ecr.ap-northeast-2.amazonaws.com/test:latest
