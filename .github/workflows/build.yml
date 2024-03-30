@@ -31,7 +31,7 @@ jobs:
 
       - name: Build docker image
         run: |
-          docker build -t test .
+          docker build -t test-ecr .
 
       - name: push ECR
         run: |
