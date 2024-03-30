@@ -8,7 +8,7 @@ COPY gradlew build.gradle settings.gradle  ./
 COPY gradle ./gradle
 COPY src/main ./src/main
 # Gradle Wrapper 실행 권한 부여
-RUN chmod +x ./gradlew
+RUN chmod +x ./gradlew # 각 로컬마다 다르게 설정해도 되는지..안되겠지만
 RUN ./gradlew bootJar
 
 

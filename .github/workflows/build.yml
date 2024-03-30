@@ -35,5 +35,5 @@ jobs:
 
       - name: push ECR
         run: |
-          docker tag test:latest 767397738765.dkr.ecr.ap-northeast-2.amazonaws.com/test:latest
-          docker push 767397738765.dkr.ecr.ap-northeast-2.amazonaws.com/test:latest
+          docker tag test-ecr:latest 905418308591.dkr.ecr.ap-northeast-2.amazonaws.com/test-ecr:latest
+          docker push 905418308591.dkr.ecr.ap-northeast-2.amazonaws.com/test-ecr:latest
