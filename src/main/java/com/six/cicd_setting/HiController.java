@@ -18,4 +18,10 @@ public class HiController {
         return "hello "+hiStr;
     }
 
+    @GetMapping("/health")
+    @ResponseBody
+    public String healthCheck() {
+        return "ok";
+    }
+
 }
