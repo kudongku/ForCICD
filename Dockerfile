@@ -15,7 +15,7 @@ RUN ./gradlew bootJar
 FROM openjdk:17-jdk-slim
 WORKDIR /app
 COPY --from=builder /app/build/libs/*.jar app.jar
-EXPOSE 80
+EXPOSE 8082
 ENTRYPOINT java -jar app.jar
 
 #도커 환경에서 빌드 파일을 만들 수 있게 함

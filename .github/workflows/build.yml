@@ -9,7 +9,7 @@ env:
   AWS_REGION: ap-northeast-2
   ECR_REGISTRY: 905418308591.dkr.ecr.ap-northeast-2.amazonaws.com/test-ecr # 레포 url
   ECR_REPOSITORY: test-ecr # 레포 이름
-  IMAGE_TAG: latest
+  IMAGE_TAG: 1.0.1
 
 jobs:
   build:
