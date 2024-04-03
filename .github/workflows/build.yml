@@ -39,6 +39,7 @@ jobs:
           docker build -t test-ecr .
 
       - name: push ECR
+        id: build-image
         run: | # build docker image tag 이름이랑 맞추기
           docker tag test-ecr:latest ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
           docker push ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
@@ -49,7 +50,7 @@ jobs:
         with:
           task-definition: ${{ env.ECS_TASK_DEFINITION }}
           container-name: ${{ env.CONTAINER_NAME }}
-          image: ${{ step.build.image.outputs.image }}
+          image: ${{ step.build-image.outputs.image }}
 
       - name: Deploy ECS from task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
