@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequiredArgsConstructor
 public class HiController {
 
+    private final HiService hiService;
+
     @GetMapping("/helloWorld/{hiStr}")
-    @ResponseBody
     public String getHi(
         @PathVariable String hiStr
     ) {
-        return "hello "+hiStr;
+        return hiService.createHi(hiStr);
     }
 
     @GetMapping("/health")
