@@ -9,7 +9,7 @@ env:
   AWS_REGION: ap-northeast-2
   ECR_REGISTRY: 905418308591.dkr.ecr.ap-northeast-2.amazonaws.com/test-ecr # 레포 url
   ECR_REPOSITORY: test-ecr # 레포 이름
-  IMAGE_TAG: 1.0.1
+  IMAGE_TAG: 0.1.0
 
 jobs:
   build:
@@ -35,5 +35,5 @@ jobs:
 
       - name: push ECR
         run: |
-          docker tag test-ecr:latest 905418308591.dkr.ecr.ap-northeast-2.amazonaws.com/test-ecr:latest
-          docker push 905418308591.dkr.ecr.ap-northeast-2.amazonaws.com/test-ecr:latest
+          docker tag test-ecr:latest ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
+          docker push ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
