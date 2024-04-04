@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class RedisService {
 
-    private final RedisTemplate<String, Object> redisTemplate;
+    private final RedisTemplate<String, String> redisTemplate;
 
     public String redisString(String testKey, String testValue) {
-        ValueOperations<String, Object> operations = redisTemplate.opsForValue();
+        ValueOperations<String, String> operations = redisTemplate.opsForValue();
         operations.set(testKey, testValue);
-        return (String) operations.get(testKey);
+        return operations.get(testKey);
     }
 }
