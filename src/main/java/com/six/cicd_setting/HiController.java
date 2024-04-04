@@ -1,16 +1,16 @@
 package com.six.cicd_setting;
 
-import java.io.IOException;
 import com.six.cicd_setting.constant.RedisService;
+import java.io.IOException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
 public class HiController {
 
@@ -33,7 +33,6 @@ public class HiController {
     }
 
     @GetMapping("/health")
-    @ResponseBody
     public String healthCheck() {
         return "ok";
     }
@@ -50,8 +49,7 @@ public class HiController {
     public String s3FileUpload(
         MultipartFile image
     ) throws IOException {
-        System.out.println(s3Service.upload(image, "image-test"));
-        return "uploaded";
+        return s3Service.upload(image, "image-test");
     }
 
 }
