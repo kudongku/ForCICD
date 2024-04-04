@@ -37,7 +37,6 @@ jobs:
       - name: Build docker image
         run: |
           docker build -t test-ecr .
-          echo "image={{env.ECR_REGISTRY}}/{{env.ECR_REPOSITORY}}:{{env.IMAGE_TAG}}" >> $GITHUB_OUTPUT
           
 
       - name: push ECR
@@ -45,6 +44,7 @@ jobs:
         run: | # build docker image tag 이름이랑 맞추기
           docker tag test-ecr:latest ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
           docker push ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
+          
 
       - name: definition ECS Task
         id: task-def
