@@ -13,10 +13,17 @@ public class HiController {
     private final HiService hiService;
 
     @GetMapping("/helloWorld/{hiStr}")
-    public String getHi(
+    public String createHi(
         @PathVariable String hiStr
     ) {
         return hiService.createHi(hiStr);
+    }
+
+    @GetMapping("/byeWorld/{hiStr}")
+    public String getHi(
+        @PathVariable String hiStr
+    ) {
+        return hiService.getHi(hiStr);
     }
 
     @GetMapping("/health")
