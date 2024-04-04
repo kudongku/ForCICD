@@ -24,6 +24,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: create application.properties
+        if: |
+          contains(github.ref, 'main')
+        run: |
+          cd ./src/main/resources
+          touch ./application.properties
+          echo "${{ secrets.APPLICATION>PROPERTIES }}" > ./application.properties
+        shell: bash
+
       - name: Configure AWS credentials
         run: |
           aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY }}
@@ -37,7 +46,6 @@ jobs:
       - name: Build docker image
         run: |
           docker build -t test-ecr .
-          
 
       - name: push ECR
         id: build-image
