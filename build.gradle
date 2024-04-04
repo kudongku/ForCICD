@@ -37,6 +37,8 @@ dependencies {
     implementation 'org.redisson:redisson-spring-boot-starter:3.27.2'
     //validation
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+    //S3
+    implementation "com.amazonaws:aws-java-sdk-s3:1.12.281"
 }
 
 'test' {
