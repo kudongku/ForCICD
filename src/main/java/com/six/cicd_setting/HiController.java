@@ -37,6 +37,11 @@ public class HiController {
         return "ok";
     }
 
+    @GetMapping("/updateTest")
+    public String updateTest() {
+        return "updateTest";
+    }
+
     @GetMapping("/redis/{testKey}/{testValue}")
     public String redisTest(
         @PathVariable String testKey,
